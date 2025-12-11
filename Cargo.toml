@@ -1,0 +1,31 @@
+[package]
+name = "rust-monkey"
+version = "0.1.0"
+edition = "2024"
+authors = [ "Tom Fleet <me@followtheprocess.codes>" ]
+description = "An implementation of the monkey programming language in Rust"
+license = "MIT"
+homepage = "https://github.com/FollowTheProcess/rust-monkey"
+repository = "https://github.com/FollowTheProcess/rust-monkey"
+readme = "README.md"
+keywords = [ "keywords", "here" ]
+categories = [ "command-line-utilities" ]
+
+# TODO: Remove when ready
+publish = false
+
+[[bin]]
+name = "monkey"
+path = "src/main.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+unused_must_use = "deny"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
