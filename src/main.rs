@@ -1,14 +1,16 @@
 #![doc = include_str!("../README.md")]
 
-fn main() {
-    println!("Hello world");
-}
+use std::process::ExitCode;
 
-#[cfg(test)]
-mod tests {
+use colored::Colorize;
 
-    #[test]
-    fn something() {
-        assert_eq!(1 + 1, 2);
+mod cli;
+
+fn main() -> ExitCode {
+    if let Err(e) = cli::run() {
+        eprintln!("{}: {}", "Error".red().bold(), e.to_string().bold());
+        return ExitCode::FAILURE;
     }
+
+    ExitCode::SUCCESS
 }

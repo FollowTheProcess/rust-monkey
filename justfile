@@ -22,3 +22,7 @@ cov:
 # Show the documentation
 doc:
     cargo doc --open
+
+# Build the binary
+build *FLAGS='':
+    cargo build {{ FLAGS }}
