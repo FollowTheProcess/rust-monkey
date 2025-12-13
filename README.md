@@ -41,6 +41,6 @@ This package was created with [copier] and the [FollowTheProcess/rust-template] 
 [copier]: https://copier.readthedocs.io/en/stable/
 [FollowTheProcess/rust-template]: https://github.com/FollowTheProcess/rust-template
 [Writing an Interpreter in Go]: https://interpreterbook.com
-[Writing an Interpreter in Go]: https://compilerbook.com
+[Writing a Compiler in Go]: https://compilerbook.com
 [monkey]: https://monkeylang.org
 [Thorsten Ball]: https://thorstenball.com
