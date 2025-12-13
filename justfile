@@ -5,12 +5,12 @@ _default:
     @just --list
 
 # Run the unit tests
-test *ARGS='':
-    cargo nextest run {{ ARGS }}
+test *FLAGS:
+    cargo nextest run {{ FLAGS }}
 
 # Run clippy linting
-lint:
-    cargo clippy --all-features --all-targets
+lint *FLAGS:
+    cargo clippy --all-features --all-targets {{ FLAGS }}
 
 # Run testing and linting in one go
 check: test lint
@@ -24,5 +24,5 @@ doc:
     cargo doc --open
 
 # Build the binary
-build *FLAGS='':
+build *FLAGS:
     cargo build {{ FLAGS }}
