@@ -2,9 +2,10 @@
 
 use std::path::PathBuf;
 
+use crate::app::App;
 use anyhow::Error;
 use clap::{Parser, Subcommand};
-use tracing::{Level, debug, info};
+use tracing::Level;
 use tracing_subscriber::FmtSubscriber;
 
 #[derive(Parser, Debug)]
@@ -24,6 +25,10 @@ enum Commands {
     Run {
         /// The monkey script file to run
         file: PathBuf,
+
+        /// Only tokenise the file and output the tokens.
+        #[arg(short, long, default_value_t = false)]
+        tokenize: bool,
     },
 
     /// Launch the monkey repl
@@ -33,7 +38,6 @@ enum Commands {
 /// run is the entrypoint for the CLI.
 pub fn run() -> Result<(), Error> {
     let cli = Cli::parse();
-    dbg!(&cli);
 
     let level = if cli.debug { Level::DEBUG } else { Level::INFO };
 
@@ -41,11 +45,10 @@ pub fn run() -> Result<(), Error> {
 
     tracing::subscriber::set_global_default(subscriber)?;
 
-    info!("I'm an info log");
-    debug!("I'm a debug log");
+    let app = App::new();
 
-    match &cli.command {
-        Commands::Run { file } => println!("Running {}...", file.display()),
+    match cli.command {
+        Commands::Run { file, tokenize } => app.run(&file, tokenize)?,
         Commands::Repl => println!("Launching a repl"),
     }
 

@@ -4,7 +4,9 @@ use std::process::ExitCode;
 
 use colored::Colorize;
 
+mod app;
 mod cli;
+mod syntax;
 
 fn main() -> ExitCode {
     if let Err(e) = cli::run() {
